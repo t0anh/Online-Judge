@@ -11,7 +11,7 @@
 #define debug(x)        cerr << #x << " = " << x << endl
 #define debug2(a, i)    cerr << #a << "[" << i << "] = " << a[i] << endl
 #define puts(x)         cout << x << endl
-#define two(n)               (1 << (n))
+#define two(n)          (1 << (n))
 
 using namespace std;
 const int N = 2018;
