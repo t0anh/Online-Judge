@@ -14,7 +14,6 @@ public class CC_KNICOV {
         output.close();
     }
 
-
     static class Problem {
         int[][][][][] dp = new int[55][8][8][8][8];
         final int dx[] = {-2, -2, -1, -1, 1, 1, 2, -2};
@@ -55,7 +54,6 @@ public class CC_KNICOV {
             dp[col][pr2][pr1][cur][nxt] = ret;
             return ret;
         }
-
 
         void Solve(InputReader input, PrintWriter output) {
             int testCases = input.nextInt();
