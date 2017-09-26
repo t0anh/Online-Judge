@@ -30,7 +30,7 @@ int main() {
 				edges.push_back(ii(u, v));
 			}
 		}
-		// run ford-bellman algorithm V-1 times
+		// run ford-bellman algorithm V-1 steps
 		vector<int> dist(V+1, INF);
 		dist[1] = -100;
 		bool flag;
@@ -48,7 +48,7 @@ int main() {
 		}
 		if(!flag) {
 			// the graph have negative cycles => set all of vertices v in the negative cycles to dist[v] = -INF
-			int u, v, w;
+			int u, v;
 			for(auto e: edges) {
 				tie(u, v) = e;
 				if(dist[u] != INF && dist[u] - ene[v] < dist[v] && dist[u] - ene[v] < 0) {
