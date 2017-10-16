@@ -1,3 +1,4 @@
+// O(logN)
 #include <bits/stdc++.h>
 
 #define REP(i, a, b) 	for(int i = (a), _b = (b); i < _b; ++i)
@@ -20,7 +21,7 @@ inline int getsum(int i, int j) {
 
 int main() {
 	ios::sync_with_stdio(false); cin.tie(0);
-#ifndef Home
+#ifdef Home
 	freopen ("input.txt", "r", stdin);
 #endif
 	int n, t;
@@ -32,14 +33,16 @@ int main() {
 	long ans = 0;
 	FOR(i, 1, n) {
 		if(a[i] > t) continue;
-		int l = min(i+1, n), r = n;
+		int l = min(i, n), r = n;
 		while(l < r) {
 			int m = (l+r)>>1;
 			if(getsum(i, m) == t) break;
 			if(getsum(i, m) < t) l = m+1;
 			else r = m-1;
 		}
-		ans += r - i + 1;
+		int k = r - i + 1;
+		ans += k*(k+1)/2;
+		i = r;
 	}
 	cout << ans << endl;
 	return 0;
