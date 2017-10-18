@@ -21,7 +21,7 @@ inline long getsum(int i, int j) {
 
 int main() {
 	ios::sync_with_stdio(false); cin.tie(0);
-#ifdef Home
+#ifndef Home
 	freopen ("input.txt", "r", stdin);
 #endif
 	int n, t;
@@ -32,15 +32,15 @@ int main() {
 	}
 	long ans = 0;
 	for (int i = 1; i <= n; i++) {
-        if(a[i] > t) continue;
-        int l = i, r = n;
-        while(l < r) {
-            int mid = (l + r + 1)/2;
-            if(getsum(i, mid) <= t) l = mid;
-            else r = mid-1; 
-        }
-        ans += r-i+1;
-    }
-    cout << ans << endl;
+		if(a[i] > t) continue;
+		int l = i, r = n;
+		while(l < r) {
+		    int mid = (l + r + 1)/2;
+		    if(getsum(i, mid) <= t) l = mid;
+		    else r = mid-1; 
+		}
+		ans += r-i+1;
+   	}
+    	cout << ans << endl;
 	return 0;
 }
