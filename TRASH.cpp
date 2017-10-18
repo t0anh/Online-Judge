@@ -1,4 +1,3 @@
-// O(logN)
 #include <bits/stdc++.h>
 
 #define REP(i, a, b) 	for(int i = (a), _b = (b); i < _b; ++i)
@@ -13,9 +12,10 @@ using namespace std;
 
 const int SIZE = 1E6+7;
 
-int a[SIZE], sum[SIZE];
+int a[SIZE];
+long sum[SIZE];
 
-inline int getsum(int i, int j) {
+inline long getsum(int i, int j) {
 	return sum[j] - sum[i-1];
 }
 
@@ -31,19 +31,16 @@ int main() {
 		sum[i] = sum[i-1] + a[i];
 	}
 	long ans = 0;
-	FOR(i, 1, n) {
-		if(a[i] > t) continue;
-		int l = min(i, n), r = n;
-		while(l < r) {
-			int m = (l+r)>>1;
-			if(getsum(i, m) == t) break;
-			if(getsum(i, m) < t) l = m+1;
-			else r = m-1;
-		}
-		int k = r - i + 1;
-		ans += k*(k+1)/2;
-		i = r;
-	}
-	cout << ans << endl;
+	for (int i = 1; i <= n; i++) {
+        if(a[i] > t) continue;
+        int l = i, r = n;
+        while(l < r) {
+            int mid = (l + r + 1)/2;
+            if(getsum(i, mid) <= t) l = mid;
+            else r = mid-1; 
+        }
+        ans += r-i+1;
+    }
+    cout << ans << endl;
 	return 0;
 }
