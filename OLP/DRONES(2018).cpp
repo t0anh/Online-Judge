@@ -1,47 +1,35 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <algorithm>
 
 using namespace std;
 
-int n;
-vector<pair<int, int>> t;
-
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	
-	freopen("input.txt", "r", stdin);
-//	freopen("output.txt", "w", stdout);
-	
-	cin >> n;
-	
-	int x, y;
-	
-	for(int i = 0; i < n; ++i) {
-		cin >> x >> y;
-		t.push_back(make_pair(max(abs(x), abs(y)), i+1));
-	}
-	
-	sort(t.begin(), t.end());
-	
-	vector<int> prior;
+	int n, x, y, t;
 	bool fail = false;
+	vector<pair<int, int>> drones;
 	
+	scanf("%d", &n);
 	for (int i = 0; i < n; ++i) {
-		if (t[i].first <= i) {
+		scanf("%d %d", &x, &y);
+		t = max(abs(x), abs(y));
+		if (t > n) {
 			fail = true;
-			break;		
+			break;
 		}
-		prior.push_back(t[i].second);
+		drones.push_back(make_pair(t, i+1));
 	}
 	
-	if(fail) {
-		cout << "-1" << endl;
+	sort(drones.begin(), drones.end());
+	
+	if (fail) {
+		puts("-1");
 	}
 	else {
-		for (int x: prior) {
-			cout << x << " ";
+		for (auto & d: drones) {
+			printf("%d ", d.second);
 		}
 	}
 	return 0;
 }
-
